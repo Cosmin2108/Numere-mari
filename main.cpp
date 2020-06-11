@@ -45,6 +45,7 @@ NumereMari::NumereMari(const NumereMari &nr)  /// constructor de copiere.
 {
     (*this).nr_mare.assign(nr.nr_mare.begin(),nr.nr_mare.end());
     (*this).semn=nr.semn;
+    this->zecimale = nr.zecimale;
 }
 
 std::istream& operator >>(std::istream &in,  NumereMari &nr)
@@ -62,12 +63,11 @@ std::istream& operator >>(std::istream &in,  NumereMari &nr)
          { nr.nr_mare.push_back(s[0]-'0'); nr.semn=1; }
 
     for(int i=1;i<strlen(s);i++){
-        if(s[i] ==',')
+        if(s[i] == ',')
             nr.zecimale = strlen(s) - i - 1;
         else
             nr.nr_mare.push_back(s[i]-'0');
     }
-
 
     delete []s;
     return in;
@@ -96,13 +96,13 @@ NumereMari NumereMari::operator+(NumereMari nr)
     NumereMari aux;
 
     if(this->semn!=nr.semn)
-     {
-      if(this->semn==0)
-        aux=nr-(-*this);
-      else
-        aux=*this-(-nr);
-      return aux;
-     }
+    {
+        if(this->semn==0)
+            aux=nr-(-*this);
+        else
+            aux=*this-(-nr);
+        return aux;
+    }
 
 
     std::list<int>::reverse_iterator i=nr.nr_mare.rbegin();
@@ -132,6 +132,7 @@ NumereMari NumereMari::operator+(NumereMari nr)
     if(rest)
         aux.nr_mare.push_front(rest);
     aux.zecimale = std::max(this->zecimale, nr.zecimale);
+
     return aux;
 }
 
@@ -152,15 +153,15 @@ NumereMari NumereMari::operator-(NumereMari nr)
     }
     else
     if(this->nr_mare.size() < nr.nr_mare.size())
-     {
+    {
         aux = -(nr-*this); // scot minusul in fata daca  primul < ca al 2-lea in scadere
         return aux;
-     }
-     else
-     if(nr_mare.size()==nr.nr_mare.size())
-     {
-         std::list<int>:: iterator m=nr_mare.begin();
-         std::list<int>:: iterator n=nr.nr_mare.begin();
+    }
+    else
+    if(nr_mare.size()==nr.nr_mare.size())
+    {
+        std::list<int>:: iterator m=nr_mare.begin();
+        std::list<int>:: iterator n=nr.nr_mare.begin();
 
         while(m!=nr_mare.end()&&n!=nr.nr_mare.end()) // verific daca nr din stg e mai mare ca cel din drp chiar daca au acelasi nr de cifre. daca este, fac scaderea invers si inmultesc cu -1
         {
@@ -171,7 +172,7 @@ NumereMari NumereMari::operator-(NumereMari nr)
             }
             m++; n++;
         }
-     }
+    }
 
 
     std::list<int>:: reverse_iterator i=nr_mare.rbegin();
@@ -209,7 +210,6 @@ NumereMari NumereMari::operator-(NumereMari nr)
      *this=copie;
      aux.zecimale = std::max(this->zecimale, nr.zecimale);
      return aux;
-
 }
 
 NumereMari NumereMari::operator-()
@@ -374,13 +374,13 @@ int main()
     std::cout<<"Afisare maximul dintre numerele intregi mari: "<<nr3<<"\n\n";
 
     // asta e o prostie. Nu aveam nevoie de a 2-a clasa. fac vector de prima clasa.
-    std::vector<VectorNrMari> v1,v2, produs;
-    std::cin>>v1>>v2;
-    max_v=maxim_vector(v1);
-    std::cout<<v1<<"\n"<<v2<<"\n";
-    std::cout<<"Maximul din vector v1: "<<max_v<<"\n";
-    produs=produs_vectorial(v1,v2);
-    std::cout<<"Produsul vectorial: "<<produs;
+    //std::vector<VectorNrMari> v1,v2, produs;
+    //std::cin>>v1>>v2;
+    //max_v=maxim_vector(v1);
+    //std::cout<<v1<<"\n"<<v2<<"\n";
+    //std::cout<<"Maximul din vector v1: "<<max_v<<"\n";
+    //produs=produs_vectorial(v1,v2);
+    //std::cout<<"Produsul vectorial: "<<produs;
 
     return 0;
 }
