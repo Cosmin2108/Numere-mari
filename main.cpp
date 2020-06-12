@@ -225,17 +225,17 @@ NumereMari NumereMari::operator-()
 
 NumereMari NumereMari::operator*(NumereMari &nr)
 {
-  std::list<int>::reverse_iterator i;
-  std::list<int>::reverse_iterator j;
-  NumereMari aux,produs;
-  if(semn!=nr.semn)
-  produs.semn=0;
-  else
-  produs.semn=1;
+    std::list<int>::reverse_iterator i;
+    std::list<int>::reverse_iterator j;
+    NumereMari aux,produs;
+    if(semn!=nr.semn)
+        produs.semn=0;
+    else
+        produs.semn=1;
 
-  int deplasare=0;
-  for(i=nr_mare.rbegin();i!=nr_mare.rend();i++)
-  {
+    int deplasare=0;
+    for(i=nr_mare.rbegin();i!=nr_mare.rend();i++)
+    {
       int rest=0;
       for(j=nr.nr_mare.rbegin();j!=nr.nr_mare.rend();j++)
         {
@@ -252,10 +252,10 @@ NumereMari NumereMari::operator*(NumereMari &nr)
       produs=produs+aux;
       aux.nr_mare.clear();
       deplasare++;
-  }
-  aux.nr_mare.clear();
-  produs.zecimale = this->zecimale + nr.zecimale;
-  return produs;
+    }
+    aux.nr_mare.clear();
+    produs.zecimale = this->zecimale + nr.zecimale;
+    return produs;
 }
 
 NumereMari maxim(NumereMari &nr1, NumereMari &nr2)
@@ -373,7 +373,6 @@ int main()
     nr3=maxim(nr1,nr2);
     std::cout<<"Afisare maximul dintre numerele intregi mari: "<<nr3<<"\n\n";
 
-    // asta e o prostie. Nu aveam nevoie de a 2-a clasa. fac vector de prima clasa.
     //std::vector<VectorNrMari> v1,v2, produs;
     //std::cin>>v1>>v2;
     //max_v=maxim_vector(v1);
